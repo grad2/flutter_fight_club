@@ -29,24 +29,41 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFD5DEF0),
       body: Column(
         children: [
           const SizedBox(height: 40,),
           Row(
-            children: const [
-              SizedBox(width: 16,),
+            children: [
+              const SizedBox(width: 16,),
               Expanded(
-                  child: Center(
-                    child: Text("You"),
+                  child: Column(
+                    children: const [
+                      Text("You"),
+                      SizedBox(height: 12,),
+                      Text("1"),
+                      Text("1"),
+                      Text("1"),
+                      Text("1"),
+                      Text("1"),
+                    ],
                   ),
               ),
-              SizedBox(width: 12,),
+              const SizedBox(width: 12,),
               Expanded(
-                child: Center(
-                  child: Text("Enemy"),
+                child: Column(
+                  children: const [
+                    Text("Enemy"),
+                    SizedBox(height: 12,),
+                    Text("1"),
+                    Text("1"),
+                    Text("1"),
+                    Text("1"),
+                    Text("1"),
+                  ],
                 ),
               ),
-              SizedBox(width: 16,),
+              const SizedBox(width: 16,),
             ],
           ),
           const Expanded(child: SizedBox(),),
@@ -101,10 +118,19 @@ class _MyHomePageState extends State<MyHomePage> {
             children: [
               const SizedBox(width: 16,),
               Expanded(
+                child: GestureDetector(
+                  onTap: () {
+                    if(defendingBodyPart != null && attackingBodyPart != null){
+                      setState(() {
+                        defendingBodyPart = null;
+                        attackingBodyPart = null;
+                      });
+                    }
+                  },
                   child: SizedBox(
                     height: 40,
                     child: ColoredBox(
-                      color: const Color.fromRGBO(0, 0, 0, 0.87),
+                      color: (defendingBodyPart == null || attackingBodyPart == null) ? Colors.black38 : const Color.fromRGBO(0, 0, 0, 0.87),
                       child: Center(
                         child: Text(
                           "Go".toUpperCase(),
@@ -117,6 +143,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       )
                     ),
                   ),
+                ),
               ),
               const SizedBox(width: 16,),
             ],
@@ -172,9 +199,14 @@ class BodyPartButton extends StatelessWidget{
       child: SizedBox(
         height: 40,
         child: ColoredBox(
-          color: selected ? const Color.fromRGBO(28, 121, 206, 1) : Colors.black26,
+          color: selected ? const Color(0xFF1C79CE) : Colors.black38,
           child: Center(
-            child: Text(bodyPart.name.toUpperCase()),
+            child: Text(
+              bodyPart.name.toUpperCase(),
+              style: TextStyle(
+                color: selected ? const Color(0xFFFFFFFF) : const Color(0xFF060D14)
+              ),
+            ),
           ),
         ),
       ),
