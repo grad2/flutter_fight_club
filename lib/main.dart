@@ -119,11 +119,10 @@ class MyHomePageState extends State<MyHomePage> {
       twoText = "Your attack was blocked.\n";
     }
     if(defendingBodyPart != whatEnemyAttacks){
-      twoText = twoText + "Enemy hit your ${attackingBodyPart?.name}.";
+      return twoText + "Enemy hit your ${attackingBodyPart?.name}.";
     }else{
-      twoText = twoText + "Enemy’s attack was blocked.";
+      return twoText + "Enemy’s attack was blocked.";
     }
-    return twoText;
   }
 
   Color _getGoButtonColor() {
